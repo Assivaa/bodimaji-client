@@ -46,7 +46,7 @@ const Footer = () => {
             </h6>
             <p className="mb-4">
               <a href="#!" className="text-gray-600">
-                Jalan Lorem Ipsum
+                Cempaka Putih, Jakarta Pusat
               </a>
             </p>
           </div>
