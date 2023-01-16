@@ -11,6 +11,7 @@ import Success from "./pages/Success";
 import Order from "./pages/Order";
 import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/dashboard">
             <Route index element={<Dashboard />} />
           </Route>
+          <Route path="/about" element={<About />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
