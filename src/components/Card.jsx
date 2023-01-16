@@ -483,7 +483,9 @@ export const OrderCard = ({ orderItem }) => {
                           </>
                         )}
                         <span className="mr-3 border-r border-gray-200  max-h-0"></span>
-                        <span>{orderItem.status} payment</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                          {orderItem.status}
+                        </span>
                       </div>
                     </div>
                   </div>
