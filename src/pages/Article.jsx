@@ -18,7 +18,7 @@ export const ArticleList = () => {
 
   const fetchArticle = async () => {
     const { data } = await axios.get(
-      process.env.REACT_APP_LOCAL_API_URL + "/article"
+      process.env.REACT_APP_API_URL + "/article"
     );
     setArticle(data);
   };
@@ -68,7 +68,7 @@ export const Article = () => {
 
   const getArticle = async () => {
     const { data } = await axios.get(
-      process.env.REACT_APP_LOCAL_API_URL + `/article/${path}`
+      process.env.REACT_APP_API_URL + `/article/${path}`
     );
     setArticle(data);
   };

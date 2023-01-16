@@ -8,7 +8,7 @@ export const ArticleCarousel = () => {
 
   const fetchArticle = async () => {
     const { data } = await axios.get(
-      process.env.REACT_APP_LOCAL_API_URL + "/article"
+      process.env.REACT_APP_API_URL + "/article"
     );
     setArticle(data);
   };
