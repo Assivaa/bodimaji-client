@@ -18,7 +18,6 @@ const Order = () => {
 
     if (data) {
       setOrderList(data);
-      console.log(data);
     }
   };
 

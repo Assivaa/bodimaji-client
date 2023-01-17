@@ -329,7 +329,6 @@ export const CheckoutForm = () => {
     const city = cityRef.current.value;
     const zip = zipRef.current.value;
     const credentials = { name, mail, address, city, zip };
-    console.log(credentials);
     await axios
       .post(
         process.env.REACT_APP_API_URL +

@@ -219,7 +219,7 @@ export const SingleProductCard = ({
     if (currentUser) {
       try {
         const resp = await axios
-          .post(process.env.REACT_APP_LOCAL_API_URL + `/wishlist/`, {
+          .post(process.env.REACT_APP_API_URL + `/wishlist/`, {
             owner: currentUser.data._id,
             productId: id,
             quantity: 1,
