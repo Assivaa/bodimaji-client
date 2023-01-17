@@ -24,12 +24,59 @@ const About = () => {
                      </p>
               </h1>
               </div>
-            </div>
+             </div>
             <br/>
+            <h1 className="text-5xl md:text-6xl xl:text-4xl font-bold">Our Vision</h1>
+            <div className="text-xs text-black px-2 py-2 mr-17 -ml-2">
+              <p class="text-black text-lg mb-4 mt-2">Creating an inclusive platform for women in all shapes to express themselves through everyday fashion.</p>
             </div>
+            <h1 className="text-5xl md:text-6xl xl:text-4xl font-bold mt-4">Our Mission</h1>
+            <p class="text-black text-lg mb-10 mt-4">Providing size inclusive clothing with versatile, authentic, adaptive and comfortable design characteristics.<br/><br/>
+            Providing informative fashion content for women with diverse body sizes and shapes, as well as a platform to campaign for body confidence narratives to Indonesian women.<br/><br/>
+            Minimizing the use of environmentally unfriendly materials in the production and packaging process of fashion products.</p>
+            <div className=" w-96 h-96 mb-0 mt-24 pr-6 mr-24">
+            <img
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673970319/bodimaji_kzsopv.jpg"
+              className="w-full rounded-lg shadow-lg"
+              alt="Bodimaji image"
+            />
+          </div>
+          <div className=" w-96 h-96 mb-20 -mt-96 ml-96 pr-6">
+            <img
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673970316/bodimajii_kh8hen.jpg"
+              className="w-full rounded-lg shadow-lg"
+              alt="Bodimaji image"
+            />
+          </div>
+          <p class="text-black text-lg mb-96 mt-44 mx-auto">BODIMAJI is a brand that sells easy-to-wear women's clothing in sizes inclusive with versatile, authentic, adaptive & comfortable.
+            We provide interesting and informative fashion content for women of all sizes and shapes body (women's body diversity),
+            and at the same time  become a forum for campaigning for body narratives confidence to Indonesian women.</p>
+          </div>
+          <div className=" w-96 h-96 mt-96 ml-10">
+            <img
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673969776/DSCF9463g_mvkg5q.jpg"
+              className="w-full rounded-lg shadow-lg"
+              alt="Bodimaji image"
+            />
+          </div>
+          <div className=" w-96 h-96 mb-20 -mt-96 ml-72 pr-3">
+            <img
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673971720/baju_cdc69w.jpg"
+              className="w-full rounded-lg shadow-lg"
+              alt="Bodimaji image"
+            />
+          </div>
+
+            <div className=" w-96 h-96 mb-20 ml-6 -mt-96 pr-3">
+            <img
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673971722/kain_duvpk3.jpg"
+              className="w-full rounded-lg shadow-lg"
+              alt="Bodimaji image"
+            />
           </div>          
-          </div>      
-          </div> 
+          </div>          
+        </div>      
+      </div> 
       <Footer />
     </>
   );
