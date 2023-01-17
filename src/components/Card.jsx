@@ -73,7 +73,9 @@ export const ArticleCard = ({ article }) => {
           {article.author} • <time>18 Nov 2022</time>
         </p>
         <h3 className="text-xl font-medium text-gray-900">{article.title}</h3>
-        <p className="mt-1 text-gray-500">{article.description}</p>
+        <p className="mt-1 text-gray-500 h-10 overflow-hidden">
+          {article.description}
+        </p>
         <div className="mt-4 flex gap-2">
           <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-900">
             Design
