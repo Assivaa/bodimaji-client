@@ -1,5 +1,11 @@
+import NavbarAdmin from "../components/NavbarAdmin";
+
 const Dashboard = () => {
-  return <>Admin Dashboard</>;
+  return (
+    <>
+      <NavbarAdmin />
+    </>
+  );
 };
 
 export default Dashboard;

@@ -28,6 +28,21 @@ export const LoginForm = () => {
           navigate("/");
         } else if (response.data.role === "customer") {
           dispatch(loginSuccess(response));
+          const getCart = async () => {
+            const { data } = await axios.get(
+              process.env.REACT_APP_API_URL + `/cart/${response.data._id}`
+            );
+            let arrQty = data.products;
+            if (data) {
+              if (arrQty) {
+                const totalQty = arrQty.reduce((accumulator, object) => {
+                  return accumulator + object.quantity;
+                }, 0);
+                dispatch(getQuantity(totalQty));
+              }
+            }
+          };
+          getCart();
           navigate("/");
         }
       })
@@ -250,6 +265,7 @@ export const CheckoutForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const currentCart = useSelector((state) => state.cart);
+  const currentProducts = useSelector((state) => state.cart.products);
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -313,7 +329,6 @@ export const CheckoutForm = () => {
     const city = cityRef.current.value;
     const zip = zipRef.current.value;
     const credentials = { name, mail, address, city, zip };
-    console.log(credentials);
     await axios
       .post(
         process.env.REACT_APP_API_URL +

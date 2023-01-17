@@ -12,6 +12,7 @@ import Order from "./pages/Order";
 import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
 import About from "./pages/About";
+import { Wishlist } from "./pages/Wishlist";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="wishlist" element={<Wishlist />} />
             <Route path="article">
               <Route path="" element={<ArticleList />} />
               <Route path=":id" element={<Article />} />
