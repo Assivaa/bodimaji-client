@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Landing from "./pages/Landing";
-import ArticleList from "./pages/ArticleList";
 import { ProductList, Product } from "./pages/Product";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
@@ -11,6 +10,8 @@ import Dashboard from "./adminPages/Dashboard";
 import Success from "./pages/Success";
 import Order from "./pages/Order";
 import { Login, Profile, Register } from "./pages/Auth";
+import { Article, ArticleList } from "./pages/Article";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -19,12 +20,14 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route path="/">
+            s
             <Route index element={<Landing />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path="article">
               <Route path="" element={<ArticleList />} />
+              <Route path=":id" element={<Article />} />
             </Route>
             <Route path="product">
               <Route path="" element={<ProductList />} />
@@ -37,6 +40,7 @@ function App() {
           <Route path="/dashboard">
             <Route index element={<Dashboard />} />
           </Route>
+          <Route path="/about" element={<About />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
