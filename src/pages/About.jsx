@@ -36,14 +36,14 @@ const About = () => {
             Minimizing the use of environmentally unfriendly materials in the production and packaging process of fashion products.</p>
             <div className=" w-96 h-96 mb-0 mt-16 pr-6 mr-24">
             <img
-              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673970319/bodimaji_kzsopv.jpg"
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1674047348/bodimaji_1_vffepw.jpg"
               className="w-full rounded-lg shadow-lg"
               alt="Bodimaji image"
             />
           </div>
           <div className=" w-96 h-96 mb-10 -mt-96 ml-96 pr-6">
             <img
-              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673970316/bodimajii_kh8hen.jpg"
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1674047348/bodimajii_lolv0t.jpg"
               className="w-full rounded-lg shadow-lg"
               alt="Bodimaji image"
             />
@@ -54,7 +54,7 @@ const About = () => {
              
           <div className=" w-96 h-96 mb-0 mt-14 -mr-8 pl-14 pr-3 ml-12">
             <img
-              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673971720/baju_cdc69w.jpg"
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1674047348/baju_uuxgpt.jpg"
               className="w-full rounded-lg shadow-lg"
               alt="Bodimaji image"
             />
@@ -62,7 +62,7 @@ const About = () => {
 
           <div className=" w-96 h-96 ml-96 mb-8 -mt-96 -mr-60 pr-3 pl-14">
             <img
-              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1673971722/kain_duvpk3.jpg"
+              src="https://res.cloudinary.com/da1ceyshu/image/upload/v1674047347/kain_kqmex6.jpg"
               className="w-full rounded-lg shadow-lg"
               alt="Bodimaji image"
             />
