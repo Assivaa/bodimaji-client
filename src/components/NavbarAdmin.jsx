@@ -3,10 +3,10 @@ import React from "react";
 const NavbarAdmin = () => {
 
     return (
-        <div class="navbaradmin-wrap">
+        <div class="bg-blue">
             <div className="w-140 h-140 mt-minus-45 ml-40 mb-minus-55">
                 <img
-                    className="w-4 mr-3"
+                    className="w-10 mr-7"
                     alt="logogram"
                     src="https://res.cloudinary.com/dcrd7eosb/image/upload/v1673322483/shop/bodimaji-logogram_dbqmgr.png"
                 />
