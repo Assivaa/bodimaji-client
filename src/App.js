@@ -13,6 +13,8 @@ import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
 import About from "./pages/About";
 import { Wishlist } from "./pages/Wishlist";
+import Articles from "./components/ArticleAdmin";
+import ProductAdmin from "./components/ProductAdmin";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Route index element={<Dashboard />} />
+            <Route path="article" element={<Articles />} />
+            <Route path="product" element={<ProductAdmin />} />
           </Route>
           <Route path="/about" element={<About />} />
         </Routes>
