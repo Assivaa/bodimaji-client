@@ -5,7 +5,7 @@ const ProductContent = () => {
         <>
             <div className="-mt-96 ml-80 mr-80">
                 <div className="h-screen overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 -mr-80 -ml-0">
-                    <div className="sideright">
+                    <div class="-mt-740 ml-290 bg-white w-950 h-740">
                         <div className="title-product">Owner</div>
                         <div className="formproduct-input">
                             <input
