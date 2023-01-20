@@ -32,7 +32,7 @@ const ArticlesContent = () => {
 
                         <div className="FormButton Submit">
                             <a className="Submitform">
-                                <Link to="/admin/dashboard" className="LinkNav">
+                                <Link to="/dashboard" className="LinkNav">
                                     <button>
                                         <span>Submit</span>
                                     </button>

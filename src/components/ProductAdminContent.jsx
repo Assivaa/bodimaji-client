@@ -6,38 +6,43 @@ const ProductContent = () => {
             <div className="-mt-96 ml-80 mr-80">
                 <div className="h-screen overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 -mr-80 -ml-0">
                     <div className="sideright">
-                        <div class="mt-20 ml-55 font-cinzel font-bold text-xl">Title</div>
-                        <div className="flex flex-col gap-42 text-center">
+                        <div className="title-product">Owner</div>
+                        <div className="formproduct-input">
                             <input
                                 type="text"
-                                placeholder="Title"
+                                placeholder="Owner"
                                 required
                             ></input>
-                            <div class="-mt-35 -mb-40 -ml-720 font-cinzel font-bold text-xl">Description</div>
+                            <div className="title-product2">Product Name</div>
                             <input
                                 type="text"
-                                placeholder="Description"
+                                placeholder="Product Name"
                             ></input>
-                            <div className="title-artcle3">Author</div>
+                            <div className="title-product3">Description</div>
                             <input
                                 type="text"
-                                placeholder="Author"
+                                placeholder="Product Description"
                             ></input>
-                            <div className="title-artcle4">Upload Image</div>
+                            <div className="title-product4">Price</div>
                             <input
                                 type="text"
-                                placeholder="Upload Image"
+                                placeholder="Product Price in Rp"
+                            ></input>
+                            <div className="title-product5">Upload Image</div>
+                            <input
+                                type="text"
+                                placeholder="Upload Image URL"
                             ></input>
                         </div>
-
+                        <br />
                         <div className="FormButton Submit">
-                            <a className="Submitform">
-                                <Link to="/admin/dashboard" className="LinkNav">
+                            <div className="Submitform">
+                                <Link to="/dashboard" className="LinkNav">
                                     <button>
                                         <span>Submit</span>
                                     </button>
                                 </Link>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>
