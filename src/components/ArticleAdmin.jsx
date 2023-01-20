@@ -1,15 +1,16 @@
 import NavbarAdmin from "./NavbarAdmin";
-import ProductAdmin from "./ProductAdmin";
 import Sidebar from "./Sidebar";
+import ArticleContent from "./ArticleAdminContent"
+import { Link } from "react-router-dom";
 
 const Articles = () => {
-return (
-       <>
-       <NavbarAdmin />
-       <Sidebar />
-       <ProductAdmin />
-       </>
-   );
+    return (
+        <>
+            <NavbarAdmin />
+            <Sidebar />
+            <ArticleContent/>
+        </>
+    );
 };
 
 export default Articles;

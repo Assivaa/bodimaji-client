@@ -43,10 +43,6 @@ const Sidebar = () => {
                             </ul>
                      </div>
                      </aside>
-                     <div className="-mt-96 ml-80 mr-80">
-                          <div className="h-screen overflow-y-auto rounded bg-gray-50 dark:bg-gray-800 -mr-80 -ml-10">
-                          </div>
-                     </div>
                  </div>                 
               </div>
       </>
