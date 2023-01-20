@@ -6,9 +6,9 @@ const NavbarAdmin = () => {
         <div class="bg-blue">
             <div className="w-140 h-140 mt-minus-45 ml-40 mb-minus-55">
                 <img
-                    className="w-10 mr-7"
-                    alt="logogram"
-                    src="https://res.cloudinary.com/dcrd7eosb/image/upload/v1673322483/shop/bodimaji-logogram_dbqmgr.png"
+                    src="https://res.cloudinary.com/dcrd7eosb/image/upload/v1673322483/shop/bodimaji-logo_dobvun.png"
+                    className="h-6 mr-3 sm:h-9"
+                    alt="Flowbite Logo"
                 />
             </div>
             <div
