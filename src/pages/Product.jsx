@@ -1,3 +1,4 @@
+import env from "react-dotenv";
 import axios from "axios";
 import { ProductCard, SingleProductCard } from "../components/Card";
 import Footer from "../components/Footer";
@@ -13,7 +14,7 @@ export const ProductList = () => {
 
   const fetchProduct = async () => {
     const { data } = await axios.get(
-      process.env.REACT_APP_API_URL + "/product"
+      env.REACT_APP_API_URL + "/product"
     );
     setProduct(data);
   };

@@ -1,3 +1,4 @@
+import env from "react-dotenv";
 import axios from "axios";
 import {
   ArticleCard,
@@ -18,7 +19,7 @@ export const ArticleList = () => {
 
   const fetchArticle = async () => {
     const { data } = await axios.get(
-      process.env.REACT_APP_API_URL + "/article"
+      env.REACT_APP_API_URL + "/article"
     );
     setArticle(data);
   };
