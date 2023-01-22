@@ -12,7 +12,7 @@ const Checkout = () => {
         <div className="container mx-auto xl:px-32">
           <div className="flex-nowrap">
             <div className="mt-12 lg:mt-0">
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
+              <h1 className="mt-10 text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
                 Checkout
                 <br />
               </h1>

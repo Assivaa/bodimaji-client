@@ -10,7 +10,7 @@ const About = () => {
         <div className="container mx-auto xl:px-32">
           <div className="grid lg:grid-cols-2 gap-12 flex-nowrap mb-11">
             <div className="mt-12 lg:mt-0">
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 mt-20">
                 About BODIMAJI
                 <br />
               </h1>

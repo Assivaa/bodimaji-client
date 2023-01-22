@@ -57,7 +57,7 @@ export const LoginForm = () => {
       <div className="h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
+            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 mt-40">
               Login with your
               <br />
               <span className="text-red-900">Bodimaji Account</span>
@@ -110,11 +110,11 @@ export const LoginForm = () => {
               </a>
 
               <div className="py-3 flex items-center justify-between pb-6">
-                <p className="mb-0 mr-2">Don't have an account?</p>
+                <p className="mb-20 mr-2">Don't have an account?</p>
                 <Link to="/register">
                   <button
                     type="button"
-                    className="inline-block px-6 py-2 border-2 border-red-600 text-red-900 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    className="mb-20 inline-block px-6 py-2 border-2 border-red-600 text-red-900 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
@@ -555,7 +555,7 @@ export const ProfileForm = () => {
       <div className="container mx-auto xl:px-32">
         <div className="grid lg:grid-cols-2 gap-12 flex-nowrap">
           <div className="mt-12 lg:mt-0">
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
+            <h1 className="mt-10 text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
               My Profile
               <br />
             </h1>
