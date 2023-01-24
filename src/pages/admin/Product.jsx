@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AdminProductForm } from "../../components/admin/Form";
 import { AdminProductTable } from "../../components/admin/Table";
 import { CircleLoading } from "../../components/Loading";
 import Sidebar from "../../components/Sidebar";
@@ -83,6 +84,15 @@ export const AdminProduct = () => {
   return (
     <>
       <Sidebar />
+    </>
+  );
+};
+
+export const AdminProductNew = () => {
+  return (
+    <>
+      <Sidebar />
+      <AdminProductForm />
     </>
   );
 };

@@ -15,7 +15,11 @@ import About from "./pages/About";
 import { Wishlist } from "./pages/Wishlist";
 import Articles from "./components/ArticleAdmin";
 import ProductAdmin from "./components/ProductAdmin";
-import { AdminProduct, AdminProductList } from "./pages/admin/Product";
+import {
+  AdminProduct,
+  AdminProductList,
+  AdminProductNew,
+} from "./pages/admin/Product";
 import { AdminArticle, AdminArticleList } from "./pages/admin/Article";
 import { AdminUser, AdminUserList } from "./pages/admin/User";
 
@@ -51,6 +55,7 @@ function App() {
             <Route path="product">
               <Route path="" element={<AdminProductList />} />
               <Route path=":id" element={<AdminProduct />} />
+              <Route path="new" element={<AdminProductNew />} />
             </Route>
             <Route path="article">
               <Route path="" element={<AdminArticleList />} />
