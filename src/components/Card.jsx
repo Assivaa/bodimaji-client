@@ -103,37 +103,42 @@ export const SingleArticleCard = ({ article }) => {
   const createdTime = createdDate.toLocaleDateString("en-US", dateFormat);
   return (
     <>
-      <main class="mt-full">
-        <div class="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative">
-          <div class="left-0 bottom-0 w-full h-full z-10"></div>
+      <main className="mt-full">
+        <div className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative">
+          <div className="left-0 bottom-0 w-full h-full z-10"></div>
           <img
             src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-            class="left-0 top-0 w-full h-full z-0 object-cover"
+            className="left-0 top-0 w-full h-full z-0 object-cover"
           />
-          <div class="p-4 bottom-0 left-0 z-20">
+          <div className="p-4 bottom-0 left-0 z-20">
             <a
               href="#"
-              class="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2"
+              className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2"
             >
               Nutrition
             </a>
-            <h2 class="text-4xl font-semibold text-black leading-tight">
+            <h2 className="text-4xl font-semibold text-black leading-tight">
               {article.title}
             </h2>
-            <div class="flex mt-3">
+            <div className="flex mt-3">
               <div>
-                <p class="font-semibold text-black text-sm">{article.author}</p>
-                <p class="font-semibold text-black text-xs"> {createdTime}</p>
+                <p className="font-semibold text-black text-sm">
+                  {article.author}
+                </p>
+                <p className="font-semibold text-black text-xs">
+                  {" "}
+                  {createdTime}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
-          <p class="pb-6">{article.description}</p>
+        <div className="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
+          <p className="pb-6">{article.description}</p>
         </div>
       </main>
-      <h2 class="text-2xl mt-4 text-black font-bold text-center">
+      <h2 className="text-2xl mt-4 text-black font-bold text-center">
         Related Article
       </h2>
     </>
@@ -536,7 +541,7 @@ export const OrderCard = ({ orderItem }) => {
                           </>
                         )}
                         <span className="mr-3 border-r border-gray-200  max-h-0"></span>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
                           {orderItem.status}
                         </span>
                       </div>
@@ -565,9 +570,11 @@ export const OrderCard = ({ orderItem }) => {
                       Rp{orderItem.bill}
                     </div>
                   </div>
-                  <button className="flex-no-shrink inline-block px-7 py-3 mr-2 bg-black text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
-                    Order Detail
-                  </button>
+                  <Link to={`/order/${orderItem._id}`}>
+                    <button className="flex-no-shrink inline-block px-7 py-3 mr-2 bg-black text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+                      Order Detail
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -575,6 +582,82 @@ export const OrderCard = ({ orderItem }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+export const SingleOrderCard = ({ order, userDetail, products }) => {
+  return (
+    <>
+      <div className="min-w-screen min-h-screen bg-gray-50 py-5">
+        <div className="px-5"></div>
+        <div className="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+          <div className="w-full">
+            <div className="-mx-3 md:flex items-start">
+              <div className="px-3 md:w-7/12 lg:pr-10">
+                <div className="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6">
+                  {products.map((p) => (
+                    <div className="w-full flex items-center">
+                      <div className="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200"></div>
+                      <div className="flex-grow pl-3">
+                        <h6 className="font-semibold uppercase text-gray-600">
+                          {p.name}
+                        </h6>
+                        <p className="text-gray-400">x {p.quantity}</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-gray-600 text-xl">
+                          Rp{p.price}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
+                  <div className="w-full flex items-center">
+                    <div className="flex-grow">
+                      <span className="text-gray-600">Total</span>
+                    </div>
+                    <div className="pl-3">
+                      <span className="font-semibold text-gray-400 text-sm">
+                        Rp
+                      </span>
+                      <span className="font-semibold">{order.bill}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-3 md:w-5/12">
+                <div className="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6">
+                  <div className="w-full flex mb-3 items-center">
+                    <div className="w-32">
+                      <span className="text-gray-600 font-semibold">
+                        Contact
+                      </span>
+                    </div>
+                    <div className="flex-grow pl-3">
+                      <span>{userDetail.name}</span>
+                    </div>
+                  </div>
+                  <div className="w-full flex items-center">
+                    <div className="w-32">
+                      <span className="text-gray-600 font-semibold">
+                        Billing Address
+                      </span>
+                    </div>
+                    <div className="flex-grow pl-3">
+                      <span>
+                        {userDetail.address}, {userDetail.city},{" "}
+                        {userDetail.zip}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -628,14 +711,17 @@ export const WishlistCard = ({ wishlistItem, getWishlist }) => {
                   <div className="flex-1 inline-flex  hidden items-center">
                     <img
                       className="w-5 h-5"
+                      alt="wishlist"
                       src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDY0IDY0IiBoZWlnaHQ9IjY0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0zMiw3LjE3NEMxOC4zMTEsNy4xNzQsNy4xNzQsMTguMzExLDcuMTc0LDMyYzAsMTMuNjg5LDExLjEzNywyNC44MjYsMjQuODI2LDI0LjgyNmMxMy42ODksMCwyNC44MjYtMTEuMTM3LDI0LjgyNi0yNC44MjYgIEM1Ni44MjYsMTguMzExLDQ1LjY4OSw3LjE3NCwzMiw3LjE3NHogTTM4LjE3NCwzMi44NzRoLTQuMDM5YzAsNi40NTMsMCwxNC4zOTgsMCwxNC4zOThoLTUuOTg1YzAsMCwwLTcuODY4LDAtMTQuMzk4aC0yLjg0NXYtNS4wODggIGgyLjg0NXYtMy4yOTFjMC0yLjM1NywxLjEyLTYuMDQsNi4wNC02LjA0bDQuNDMzLDAuMDE3djQuOTM5YzAsMC0yLjY5NSwwLTMuMjE5LDBjLTAuNTI0LDAtMS4yNjgsMC4yNjItMS4yNjgsMS4zODZ2Mi45OWg0LjU2ICBMMzguMTc0LDMyLjg3NHoiLz48L3N2Zz4="
                     />
                     <img
                       className="w-5 h-5"
+                      alt="wishlist"
                       src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDU2LjY5MyA1Ni42OTMiIGhlaWdodD0iNTYuNjkzcHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1Ni42OTMgNTYuNjkzIiB3aWR0aD0iNTYuNjkzcHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yOC4zNDgsNS4xNTdjLTEzLjYsMC0yNC42MjUsMTEuMDI3LTI0LjYyNSwyNC42MjVjMCwxMy42LDExLjAyNSwyNC42MjMsMjQuNjI1LDI0LjYyM2MxMy42LDAsMjQuNjIzLTExLjAyMywyNC42MjMtMjQuNjIzICBDNTIuOTcxLDE2LjE4NCw0MS45NDcsNS4xNTcsMjguMzQ4LDUuMTU3eiBNNDAuNzUyLDI0LjgxN2MwLjAxMywwLjI2NiwwLjAxOCwwLjUzMywwLjAxOCwwLjgwM2MwLDguMjAxLTYuMjQyLDE3LjY1Ni0xNy42NTYsMTcuNjU2ICBjLTMuNTA0LDAtNi43NjctMS4wMjctOS41MTMtMi43ODdjMC40ODYsMC4wNTcsMC45NzksMC4wODYsMS40OCwwLjA4NmMyLjkwOCwwLDUuNTg0LTAuOTkyLDcuNzA3LTIuNjU2ICBjLTIuNzE1LTAuMDUxLTUuMDA2LTEuODQ2LTUuNzk2LTQuMzExYzAuMzc4LDAuMDc0LDAuNzY3LDAuMTExLDEuMTY3LDAuMTExYzAuNTY2LDAsMS4xMTQtMC4wNzQsMS42MzUtMC4yMTcgIGMtMi44NC0wLjU3LTQuOTc5LTMuMDgtNC45NzktNi4wODRjMC0wLjAyNywwLTAuMDUzLDAuMDAxLTAuMDhjMC44MzYsMC40NjUsMS43OTMsMC43NDQsMi44MTEsMC43NzcgIGMtMS42NjYtMS4xMTUtMi43NjEtMy4wMTItMi43NjEtNS4xNjZjMC0xLjEzNywwLjMwNi0yLjIwNCwwLjg0LTMuMTJjMy4wNjEsMy43NTQsNy42MzQsNi4yMjUsMTIuNzkyLDYuNDgzICBjLTAuMTA2LTAuNDUzLTAuMTYxLTAuOTI4LTAuMTYxLTEuNDE0YzAtMy40MjYsMi43NzgtNi4yMDUsNi4yMDYtNi4yMDVjMS43ODUsMCwzLjM5NywwLjc1NCw0LjUyOSwxLjk1OSAgYzEuNDE0LTAuMjc3LDIuNzQyLTAuNzk1LDMuOTQxLTEuNTA2Yy0wLjQ2NSwxLjQ1LTEuNDQ4LDIuNjY2LTIuNzMsMy40MzNjMS4yNTctMC4xNSwyLjQ1My0wLjQ4NCwzLjU2NS0wLjk3NyAgQzQzLjAxOCwyMi44NDksNDEuOTY1LDIzLjk0Miw0MC43NTIsMjQuODE3eiIvPjwvc3ZnPg=="
                     />
                     <img
                       className="w-5 h-5"
+                      alt="wishlist"
                       src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNjdweCIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDY3IDY3OyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNjcgNjciIHdpZHRoPSI2N3B4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNTAuODM3LDQ4LjEzN1YzNi40MjVjMC02LjI3NS0zLjM1LTkuMTk1LTcuODE2LTkuMTk1ICBjLTMuNjA0LDAtNS4yMTksMS45ODMtNi4xMTksMy4zNzRWMjcuNzFoLTYuNzljMC4wOSwxLjkxNywwLDIwLjQyNywwLDIwLjQyN2g2Ljc5VjM2LjcyOWMwLTAuNjA5LDAuMDQ0LTEuMjE5LDAuMjI0LTEuNjU1ICBjMC40OS0xLjIyLDEuNjA3LTIuNDgzLDMuNDgyLTIuNDgzYzIuNDU4LDAsMy40NCwxLjg3MywzLjQ0LDQuNjE4djEwLjkyOUg1MC44Mzd6IE0yMi45NTksMjQuOTIyYzIuMzY3LDAsMy44NDItMS41NywzLjg0Mi0zLjUzMSAgYy0wLjA0NC0yLjAwMy0xLjQ3NS0zLjUyOC0zLjc5Ny0zLjUyOHMtMy44NDEsMS41MjQtMy44NDEsMy41MjhjMCwxLjk2MSwxLjQ3NCwzLjUzMSwzLjc1MywzLjUzMUgyMi45NTl6IE0zNCw2NCAgQzE3LjQzMiw2NCw0LDUwLjU2OCw0LDM0QzQsMTcuNDMxLDE3LjQzMiw0LDM0LDRzMzAsMTMuNDMxLDMwLDMwQzY0LDUwLjU2OCw1MC41NjgsNjQsMzQsNjR6IE0yNi4zNTQsNDguMTM3VjI3LjcxaC02Ljc4OXYyMC40MjcgIEgyNi4zNTR6IiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7ZmlsbDojMDEwMTAxOyIvPjwvc3ZnPg=="
                     />
                   </div>

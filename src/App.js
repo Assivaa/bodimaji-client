@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Dashboard from "./adminPages/Dashboard";
 import Success from "./pages/Success";
-import Order from "./pages/Order";
+import Order, { OrderList } from "./pages/Order";
 import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
 import About from "./pages/About";
@@ -23,7 +23,6 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route path="/">
-            s
             <Route index element={<Landing />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -39,7 +38,10 @@ function App() {
             </Route>
             <Route path="checkout" element={<Checkout />} />
             <Route path="success" element={<Success />} />
-            <Route path="order" element={<Order />} />
+            <Route path="order">
+              <Route path="" element={<OrderList />} />
+              <Route path=":id" element={<Order />} />
+            </Route>
           </Route>
           <Route path="/dashboard">
             <Route index element={<Dashboard />} />
