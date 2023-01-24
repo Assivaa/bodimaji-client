@@ -6,15 +6,18 @@ import Landing from "./pages/Landing";
 import { ProductList, Product } from "./pages/Product";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
-import Dashboard from "./adminPages/Dashboard";
+import Dashboard from "./pages/admin/Dashboard";
 import Success from "./pages/Success";
-import Order from "./pages/Order";
+import Order, { OrderList } from "./pages/Order";
 import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
 import About from "./pages/About";
 import { Wishlist } from "./pages/Wishlist";
 import Articles from "./components/ArticleAdmin";
 import ProductAdmin from "./components/ProductAdmin";
+import { AdminProduct, AdminProductList } from "./pages/admin/Product";
+import { AdminArticle, AdminArticleList } from "./pages/admin/Article";
+import { AdminUser, AdminUserList } from "./pages/admin/User";
 
 function App() {
   return (
@@ -23,7 +26,6 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route path="/">
-            s
             <Route index element={<Landing />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -39,12 +41,28 @@ function App() {
             </Route>
             <Route path="checkout" element={<Checkout />} />
             <Route path="success" element={<Success />} />
-            <Route path="order" element={<Order />} />
+            <Route path="order">
+              <Route path="" element={<OrderList />} />
+              <Route path=":id" element={<Order />} />
+            </Route>
           </Route>
           <Route path="/dashboard">
             <Route index element={<Dashboard />} />
-            <Route path="article" element={<Articles />} />
-            <Route path="product" element={<ProductAdmin />} />
+            <Route path="product">
+              <Route path="" element={<AdminProductList />} />
+              <Route path=":id" element={<AdminProduct />} />
+            </Route>
+            <Route path="article">
+              <Route path="" element={<AdminArticleList />} />
+              <Route path=":id" element={<AdminArticle />} />
+            </Route>
+            <Route path="user">
+              <Route path="" element={<AdminUserList />} />
+              <Route path=":id" element={<AdminUser />} />
+            </Route>
+
+            {/* <Route path="article" element={<Articles />} /> */}
+            {/* <Route path="product" element={<ProductAdmin />} /> */}
           </Route>
           <Route path="/about" element={<About />} />
         </Routes>
