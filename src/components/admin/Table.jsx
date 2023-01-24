@@ -1,6 +1,6 @@
 import { AdminArticleTableRow, AdminProductTableRow } from "./Row";
 
-export const AdminProductTable = ({ product }) => {
+export const AdminProductTable = ({ product, fetchProduct }) => {
   return (
     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -29,7 +29,11 @@ export const AdminProductTable = ({ product }) => {
           </thead>
           <tbody>
             {product.map((p) => (
-              <AdminProductTableRow product={p} key={p._id} />
+              <AdminProductTableRow
+                product={p}
+                key={p._id}
+                fetchProduct={fetchProduct}
+              />
             ))}
           </tbody>
         </table>

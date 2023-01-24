@@ -1,4 +1,6 @@
-export const AdminProductTableRow = ({ product }) => {
+import axios from "axios";
+
+export const AdminProductTableRow = ({ product, fetchProduct }) => {
   let dateFormat = {
     weekday: "long",
     year: "numeric",
@@ -7,6 +9,24 @@ export const AdminProductTableRow = ({ product }) => {
   };
   let createdDate = new Date(product.createdAt);
   const createdDateTime = createdDate.toLocaleDateString("en-US", dateFormat);
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    let productId = product._id;
+
+    try {
+      const resp = await axios
+        .delete(process.env.REACT_APP_API_URL + `/product/${productId}`)
+        .then((response) => {
+          fetchProduct();
+          alert("product deleted from list");
+        });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -49,7 +69,9 @@ export const AdminProductTableRow = ({ product }) => {
             aria-hidden
             className="absolute inset-0 bg-red-400  rounded-full"
           ></span>
-          <span className="relative">Delete</span>
+          <span className="relative" onClick={handleDelete}>
+            Delete
+          </span>
         </span>
       </td>
     </tr>

@@ -67,7 +67,10 @@ export const AdminProductList = () => {
               </div>
             </div>
             <div>
-              <AdminProductTable product={product} />
+              <AdminProductTable
+                product={product}
+                fetchProduct={fetchProduct}
+              />
             </div>
           </div>
         </>
