@@ -13,7 +13,9 @@ export const ProductList = () => {
   const [product, setProduct] = useState([]);
 
   const fetchProduct = async () => {
-    const { data } = await axios.get(env.REACT_APP_API_URL + "/product");
+    const { data } = await axios.get(
+      process.env.REACT_APP_API_URL + "/product"
+    );
     setProduct(data);
   };
 
