@@ -21,7 +21,7 @@ const Footer = () => {
               Find Us Here
             </h6>
             <div className="flex ">
-              <a href="#!" className="mr-6 text-gray-600">
+              <a href="https://www.instagram.com/bodimaji" className="mr-6 text-gray-600">
                 <svg
                   aria-hidden="true"
                   focusable="false"
