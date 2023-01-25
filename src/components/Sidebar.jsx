@@ -103,6 +103,15 @@ const Sidebar = () => {
               </h1>
             </Link>
           </div>
+          <div className="my-4 bg-gray-600 h-[1px]"></div>
+          <Link to="/" target={"_blank"}>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white">
+              <i className="bi bi-house-door-fill"></i>
+              <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                Go to Homepage
+              </span>
+            </div>
+          </Link>
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white">
             <i className="bi bi-box-arrow-in-right"></i>
             <span

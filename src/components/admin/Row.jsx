@@ -138,3 +138,63 @@ export const AdminArticleTableRow = ({ article }) => {
     </tr>
   );
 };
+
+export const AdminDashboardOrderListRow = () => {
+  return (
+    <tr>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">order id</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">customer</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">order date</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">bill</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+          <span
+            aria-hidden
+            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+          ></span>
+          <span className="relative">status</span>
+        </span>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <span className="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight cursor-pointer">
+          <span
+            aria-hidden
+            className="absolute inset-0 bg-yellow-200 opacity-400 rounded-full"
+          ></span>
+          <span className="relative">View</span>
+        </span>
+      </td>
+    </tr>
+  );
+};
+
+export const AdminDashboardProductListRow = () => {
+  return (
+    <tr>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">product name</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">stock</p>
+      </td>
+
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <span className="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight cursor-pointer">
+          <span
+            aria-hidden
+            className="absolute inset-0 bg-yellow-200 opacity-400 rounded-full"
+          ></span>
+          <span className="relative">View</span>
+        </span>
+      </td>
+    </tr>
+  );
+};

@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
@@ -13,8 +12,6 @@ import { Login, Profile, Register } from "./pages/Auth";
 import { Article, ArticleList } from "./pages/Article";
 import About from "./pages/About";
 import { Wishlist } from "./pages/Wishlist";
-import Articles from "./components/ArticleAdmin";
-import ProductAdmin from "./components/ProductAdmin";
 import {
   AdminProduct,
   AdminProductList,
@@ -65,9 +62,6 @@ function App() {
               <Route path="" element={<AdminUserList />} />
               <Route path=":id" element={<AdminUser />} />
             </Route>
-
-            {/* <Route path="article" element={<Articles />} /> */}
-            {/* <Route path="product" element={<ProductAdmin />} /> */}
           </Route>
           <Route path="/about" element={<About />} />
         </Routes>
