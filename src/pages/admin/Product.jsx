@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { AdminProductForm } from "../../components/admin/Form";
+import { Link, useLocation } from "react-router-dom";
+import {
+  AdminProductForm,
+  AdminProductFormEdit,
+} from "../../components/admin/Form";
 import { AdminProductTable } from "../../components/admin/Table";
 import { CircleLoading } from "../../components/Loading";
 import Sidebar from "../../components/Sidebar";
@@ -81,9 +84,31 @@ export const AdminProductList = () => {
 };
 
 export const AdminProduct = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [product, setProduct] = useState([]);
+  const path = useLocation().pathname.split("/")[3];
+
+  const getProduct = async () => {
+    const { data } = await axios.get(
+      process.env.REACT_APP_API_URL + `/product/${path}`
+    );
+    setProduct(data);
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    getProduct().then((data) => {
+      setIsLoading(false);
+    });
+  }, []);
   return (
     <>
       <Sidebar />
+      {isLoading ? (
+        <CircleLoading />
+      ) : (
+        <AdminProductFormEdit product={product} getProduct={getProduct} />
+      )}
     </>
   );
 };

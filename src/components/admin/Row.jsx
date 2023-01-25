@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export const AdminProductTableRow = ({ product, fetchProduct }) => {
   let dateFormat = {
@@ -57,14 +58,25 @@ export const AdminProductTableRow = ({ product, fetchProduct }) => {
         </span>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
-          <span
-            aria-hidden
-            className="absolute inset-0 bg-green-200 opacity-400 rounded-full"
-          ></span>
-          <span className="relative">View</span>
-        </span>
-        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+        <Link to={`/product/${product._id}`} target="_blank">
+          <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight cursor-pointer">
+            <span
+              aria-hidden
+              className="absolute inset-0 bg-green-200 opacity-400 rounded-full"
+            ></span>
+            <span className="relative">View on Site</span>
+          </span>
+        </Link>
+        <Link to={`/dashboard/product/${product._id}`}>
+          <span className="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight cursor-pointer">
+            <span
+              aria-hidden
+              className="absolute inset-0 bg-yellow-200 opacity-400 rounded-full"
+            ></span>
+            <span className="relative">Edit</span>
+          </span>
+        </Link>
+        <span className="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight cursor-pointer">
           <span
             aria-hidden
             className="absolute inset-0 bg-red-400  rounded-full"
