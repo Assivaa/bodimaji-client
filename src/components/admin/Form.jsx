@@ -174,15 +174,13 @@ export const AdminProductForm = () => {
   );
 };
 
-export const AdminProductFormEdit = ({ product, getProduct }) => {
+export const AdminProductFormEdit = ({ product, getProduct, path }) => {
   const { currentUser } = useSelector((state) => state.user);
   const nameRef = useRef(null);
   const priceRef = useRef(null);
   const stockRef = useRef(null);
   const descRef = useRef(null);
   const [image, setImage] = useState("");
-
-  let navigate = useNavigate();
 
   const handleChange = (e) => {
     setImage(e.target.files[0]);
@@ -191,57 +189,82 @@ export const AdminProductFormEdit = ({ product, getProduct }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
-      alert("Please upload an image first!");
+      const registeredBy = currentUser.data._id;
+      const name = nameRef.current.value;
+      const price = priceRef.current.value;
+      const countInStock = stockRef.current.value;
+      const description = descRef.current.value;
+      const details = {
+        registeredBy,
+        name,
+        price,
+        countInStock,
+        description,
+      };
+      axios
+        .put(process.env.REACT_APP_API_URL + `/product/` + path, details)
+        .then((response) => {
+          console.log("Response", response.data);
+          alert("Product updated");
+          getProduct();
+        })
+        .catch((error) => {
+          alert("Error", error.response.message);
+        });
+    } else {
+      const storageRef = ref(
+        storage,
+        `bodimaji/${image.name}` + new Date().getTime()
+      );
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progressPercentage = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          console.log(progressPercentage);
+        },
+        (err) => {
+          console.log(err.message);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              const registeredBy = currentUser.data._id;
+              const name = nameRef.current.value;
+              const price = priceRef.current.value;
+              const countInStock = stockRef.current.value;
+              const description = descRef.current.value;
+              const img = downloadURL;
+              const details = {
+                registeredBy,
+                name,
+                price,
+                countInStock,
+                description,
+                img,
+              };
+              axios
+                .put(
+                  process.env.REACT_APP_API_URL + `/product/` + path,
+                  details
+                )
+                .then((response) => {
+                  console.log("Response", response.data);
+                  alert("Product updated");
+                  getProduct();
+                })
+                .catch((error) => {
+                  alert("Error", error.response.message);
+                });
+            })
+            .catch((err) => {
+              console.log("Error", err);
+            });
+        }
+      );
     }
-    const storageRef = ref(
-      storage,
-      `bodimaji/${image.name}` + new Date().getTime()
-    );
-    const uploadTask = uploadBytesResumable(storageRef, image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progressPercentage = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        console.log(progressPercentage);
-      },
-      (err) => {
-        console.log(err.message);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            const registeredBy = currentUser.data._id;
-            const name = nameRef.current.value;
-            const price = priceRef.current.value;
-            const countInStock = stockRef.current.value;
-            const description = descRef.current.value;
-            const img = downloadURL;
-            const details = {
-              registeredBy,
-              name,
-              price,
-              countInStock,
-              description,
-              img,
-            };
-            axios
-              .put(process.env.REACT_APP_API_URL + `/product`, details)
-              .then((response) => {
-                console.log("Response", response.data);
-                alert("Product updated");
-                getProduct();
-              })
-              .catch((error) => {
-                alert("Error", error.response.message);
-              });
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-      }
-    );
   };
 
   return (

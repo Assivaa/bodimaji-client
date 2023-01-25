@@ -107,7 +107,11 @@ export const AdminProduct = () => {
       {isLoading ? (
         <CircleLoading />
       ) : (
-        <AdminProductFormEdit product={product} getProduct={getProduct} />
+        <AdminProductFormEdit
+          product={product}
+          getProduct={getProduct}
+          path={path}
+        />
       )}
     </>
   );
