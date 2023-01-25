@@ -1,7 +1,9 @@
 import axios from "axios";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebaseConfig";
 
 export const AdminProductForm = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -13,32 +15,64 @@ export const AdminProductForm = () => {
 
   let navigate = useNavigate();
 
+  const handleChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const registeredBy = currentUser.data._id;
-    const name = nameRef.current.value;
-    const price = priceRef.current.value;
-    const countInStock = stockRef.current.value;
-    const description = descRef.current.value;
-    const img =
-      "https://image.uniqlo.com/UQ/ST3/id/imagesgoods/444550/item/idgoods_25_444550.jpg?width=1600&impolicy=quality_75";
-    const details = {
-      registeredBy,
-      name,
-      price,
-      countInStock,
-      description,
-      img,
-    };
-    await axios
-      .post(process.env.REACT_APP_API_URL + `/product`, details)
-      .then((response) => {
-        alert("Product added");
-        navigate("/dashboard/product");
-      })
-      .catch((error) => {
-        alert(error.response.data.message);
-      });
+    if (!image) {
+      alert("Please upload an image first!");
+    }
+    const storageRef = ref(
+      storage,
+      `bodimaji/${image.name}` + new Date().getTime()
+    );
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progressPercentage = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log(progressPercentage);
+      },
+      (err) => {
+        console.log(err.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
+            const registeredBy = currentUser.data._id;
+            const name = nameRef.current.value;
+            const price = priceRef.current.value;
+            const countInStock = stockRef.current.value;
+            const description = descRef.current.value;
+            const img = downloadURL;
+            const details = {
+              registeredBy,
+              name,
+              price,
+              countInStock,
+              description,
+              img,
+            };
+            axios
+              .post(process.env.REACT_APP_API_URL + `/product`, details)
+              .then((response) => {
+                console.log("Response", response.data);
+                alert("Product added");
+                navigate("/dashboard/product");
+              })
+              .catch((error) => {
+                alert("Error", error.response.message);
+              });
+          })
+          .catch((err) => {
+            console.log("Error", err);
+          });
+      }
+    );
   };
 
   return (
@@ -116,7 +150,8 @@ export const AdminProductForm = () => {
                       <input
                         className="block w-full text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 focus:outline-none"
                         type="file"
-                        onChange={(e) => setImage(e.target.files[0])}
+                        accept="image/*"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
