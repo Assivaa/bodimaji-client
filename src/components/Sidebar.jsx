@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
 
@@ -10,6 +10,7 @@ const Sidebar = () => {
     dispatch(logout());
     navigate("/");
   };
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <>
       <div className="bg-gray-00">
@@ -23,6 +24,14 @@ const Sidebar = () => {
               />
             </div>
             <div className="my-2 bg-gray-600 h-[1px]"></div>
+          </div>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 text-white">
+            <i className="bi bi-chat-left-text-fill"></i>
+            <div className="flex justify-between w-full items-center">
+              <span className="text-[15px] ml-4 text-gray-200 font-bold">
+                Welcome, {currentUser.data.name}
+              </span>
+            </div>
           </div>
           <Link to="/dashboard">
             <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white">
