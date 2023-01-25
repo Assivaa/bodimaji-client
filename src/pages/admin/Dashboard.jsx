@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   AdminDashboardOrderCard,
   AdminDashboardOrderListCard,
@@ -8,6 +10,18 @@ import {
 import Sidebar from "../../components/Sidebar";
 
 const Dashboard = () => {
+  const [product, setProduct] = useState([]);
+
+  const fetchProduct = async () => {
+    const { data } = await axios.get(
+      process.env.REACT_APP_API_URL + "/product"
+    );
+    setProduct(data);
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
   return (
     <>
       <Sidebar />
@@ -28,7 +42,7 @@ const Dashboard = () => {
         <div class="max-w-full">
           <div class="sm:flex sm:space-x-4">
             <AdminDashboardOrderListCard />
-            <AdminDashboardProductListCard />
+            <AdminDashboardProductListCard product={product} />
           </div>
         </div>
       </div>

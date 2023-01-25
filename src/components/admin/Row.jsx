@@ -176,14 +176,16 @@ export const AdminDashboardOrderListRow = () => {
   );
 };
 
-export const AdminDashboardProductListRow = () => {
+export const AdminDashboardProductListRow = ({ product }) => {
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">product name</p>
+        <p className="text-gray-900 whitespace-no-wrap">{product.name}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">stock</p>
+        <p className="text-gray-900 whitespace-no-wrap">
+          {product.countInStock}
+        </p>
       </td>
 
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">

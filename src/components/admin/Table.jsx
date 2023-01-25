@@ -118,7 +118,7 @@ export const AdminDashboardOrderTable = () => {
   );
 };
 
-export const AdminDashboardProductTable = () => {
+export const AdminDashboardProductTable = ({ product }) => {
   return (
     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -138,7 +138,9 @@ export const AdminDashboardProductTable = () => {
             </tr>
           </thead>
           <tbody>
-            <AdminDashboardProductListRow />
+            {product.slice(0, 3).map((p) => (
+              <AdminDashboardProductListRow product={p} key={p._id} />
+            ))}
           </tbody>
         </table>
       </div>
