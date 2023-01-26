@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
+import Clock from "../utilities/Timer";
 
 const Sidebar = () => {
   let navigate = useNavigate();
@@ -24,6 +25,9 @@ const Sidebar = () => {
               />
             </div>
             <div className="my-2 bg-gray-600 h-[1px]"></div>
+          </div>
+          <div className="text-gray-100 text-xl">
+            <Clock />
           </div>
           <div className="p-2.5 mt-3 flex items-center rounded-md px-4 text-white">
             <i className="bi bi-chat-left-text-fill"></i>
