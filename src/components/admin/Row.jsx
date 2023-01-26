@@ -90,7 +90,7 @@ export const AdminProductTableRow = ({ product, fetchProduct }) => {
   );
 };
 
-export const AdminArticleTableRow = ({ article }) => {
+export const AdminArticleTableRow = ({ article, fetchArticle }) => {
   let dateFormat = {
     weekday: "long",
     year: "numeric",
@@ -99,6 +99,24 @@ export const AdminArticleTableRow = ({ article }) => {
   };
   let createdDate = new Date(article.createdAt);
   const createdDateTime = createdDate.toLocaleDateString("en-US", dateFormat);
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    let articleId = article._id;
+
+    try {
+      const resp = await axios
+        .delete(process.env.REACT_APP_API_URL + `/article/${articleId}`)
+        .then((response) => {
+          fetchArticle();
+          alert("article deleted from list");
+        });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -134,7 +152,9 @@ export const AdminArticleTableRow = ({ article }) => {
             aria-hidden
             className="absolute inset-0 bg-red-400  rounded-full"
           ></span>
-          <span className="relative">Delete</span>
+          <span className="relative" onClick={handleDelete}>
+            Delete
+          </span>
         </span>
       </td>
     </tr>

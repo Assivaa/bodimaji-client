@@ -47,7 +47,7 @@ export const AdminProductTable = ({ product, fetchProduct }) => {
   );
 };
 
-export const AdminArticleTable = ({ article }) => {
+export const AdminArticleTable = ({ article, fetchArticle }) => {
   return (
     <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -73,7 +73,11 @@ export const AdminArticleTable = ({ article }) => {
           </thead>
           <tbody>
             {article.map((a) => (
-              <AdminArticleTableRow article={a} key={a._id} />
+              <AdminArticleTableRow
+                article={a}
+                key={a._id}
+                fetchArticle={fetchArticle}
+              />
             ))}
           </tbody>
         </table>

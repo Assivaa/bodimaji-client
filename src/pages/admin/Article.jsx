@@ -59,7 +59,7 @@ export const AdminArticleList = () => {
               </h1>
               <div className="flex items-center justify-between">
                 <div className="lg:ml-40 ml-10 space-x-8">
-                  <Link to="/dashboard/product/new">
+                  <Link to="/dashboard/article/new">
                     <button className="bg-gray-600 hover:bg-red-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
                       New Article
                     </button>
@@ -68,7 +68,10 @@ export const AdminArticleList = () => {
               </div>
             </div>
             <div>
-              <AdminArticleTable article={article} />
+              <AdminArticleTable
+                article={article}
+                fetchArticle={fetchArticle}
+              />
             </div>
           </div>
         </>

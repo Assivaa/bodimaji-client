@@ -1,11 +1,5 @@
-import env from "react-dotenv";
 import axios from "axios";
-import {
-  ArticleCard,
-  ProductCard,
-  SingleArticleCard,
-  SingleProductCard,
-} from "../components/Card";
+import { ArticleCard, SingleArticleCard } from "../components/Card";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
@@ -19,7 +13,7 @@ export const ArticleList = () => {
 
   const fetchArticle = async () => {
     const { data } = await axios.get(
-      env.REACT_APP_API_URL + "/article"
+      process.env.REACT_APP_API_URL + "/article"
     );
     setArticle(data);
   };

@@ -383,7 +383,7 @@ export const AdminArticleForm = () => {
   const titleRef = useRef(null);
   const descRef = useRef(null);
   const [image, setImage] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
   const checkList = ["Tips", "Lifestyle", "Fashion", "Health"];
 
   let navigate = useNavigate();
@@ -392,7 +392,15 @@ export const AdminArticleForm = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleChecked = (e) => {};
+  const handleChecked = (e) => {
+    var updatedList = [...checked];
+    if (e.target.checked) {
+      updatedList = [...checked, e.target.value];
+    } else {
+      updatedList.splice(checked.indexOf(e.target.value), 1);
+    }
+    setChecked(updatedList);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -423,12 +431,14 @@ export const AdminArticleForm = () => {
             const title = titleRef.current.value;
             const description = descRef.current.value;
             const img = downloadURL;
+            const categories = checked;
             const details = {
               registeredBy,
               author,
               title,
               description,
               img,
+              categories,
             };
             axios
               .post(process.env.REACT_APP_API_URL + `/article`, details)

@@ -1,10 +1,12 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArticleCard, Card, ImageCard } from "./Card";
+import { ArticleCard, ImageCard } from "./Card";
+import { CircleLoading } from "./Loading";
 
 export const ArticleCarousel = () => {
   const [article, setArticle] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchArticle = async () => {
     const { data } = await axios.get(
@@ -14,7 +16,10 @@ export const ArticleCarousel = () => {
   };
 
   useEffect(() => {
-    fetchArticle();
+    setIsLoading(true);
+    fetchArticle().then((data) => {
+      setIsLoading(false);
+    });
   }, []);
   return (
     <div className="px-6 py-12 md:px-12 bg-gray-50 text-gray-800 text-center lg:text-left">
@@ -38,11 +43,15 @@ export const ArticleCarousel = () => {
             </Link>
           </div>
         </div>
-        <div className="grid lg:grid-cols-3 gap-12 flex items-center">
-          {article.slice(0, 3).map((a) => (
-            <ArticleCard article={a} key={a._id} />
-          ))}
-        </div>
+        {isLoading ? (
+          <CircleLoading />
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-12 flex items-center">
+            {article.slice(0, 3).map((a) => (
+              <ArticleCard article={a} key={a._id} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -50,6 +59,7 @@ export const ArticleCarousel = () => {
 
 export const ProductCarousel = () => {
   const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchProduct = async () => {
     const { data } = await axios.get(
@@ -59,7 +69,10 @@ export const ProductCarousel = () => {
   };
 
   useEffect(() => {
-    fetchProduct();
+    setIsLoading(true);
+    fetchProduct().then((data) => {
+      setIsLoading(false);
+    });
   }, []);
   return (
     <div className="px-6 py-12 md:px-12 bg-gray-50 text-gray-800 text-center lg:text-left">
@@ -83,11 +96,15 @@ export const ProductCarousel = () => {
             </Link>
           </div>
         </div>
-        <div className="grid lg:grid-cols-3 gap-12 flex items-center">
-          {product.slice(0, 3).map((p) => (
-            <ImageCard product={p} key={p._id} />
-          ))}
-        </div>
+        {isLoading ? (
+          <CircleLoading />
+        ) : (
+          <div className="grid lg:grid-cols-3 gap-12 flex items-center">
+            {product.slice(0, 3).map((p) => (
+              <ImageCard product={p} key={p._id} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
