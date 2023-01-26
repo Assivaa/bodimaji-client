@@ -566,7 +566,6 @@ export const AdminArticleFormEdit = ({ article, getArticle, path }) => {
   const titleRef = useRef(null);
   const descRef = useRef(null);
   const [image, setImage] = useState("");
-  let defaultChecked = article.categories;
   const [checked, setChecked] = useState([]);
   const checkList = ["Tips", "Lifestyle", "Fashion", "Health"];
 
@@ -589,57 +588,82 @@ export const AdminArticleFormEdit = ({ article, getArticle, path }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
-      alert("Please upload an image first!");
+      const registeredBy = currentUser.data._id;
+      const author = currentUser.data.name;
+      const title = titleRef.current.value;
+      const description = descRef.current.value;
+      const categories = checked;
+      const details = {
+        registeredBy,
+        author,
+        title,
+        description,
+        categories,
+      };
+      axios
+        .put(process.env.REACT_APP_API_URL + `/article/` + path, details)
+        .then((response) => {
+          console.log("Response", response.data);
+          alert("Article updated");
+          navigate("/dashboard/article");
+        })
+        .catch((error) => {
+          alert("Error", error.response.message);
+        });
+    } else {
+      const storageRef = ref(
+        storage,
+        `bodimaji/${image.name}` + new Date().getTime()
+      );
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progressPercentage = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          console.log(progressPercentage);
+        },
+        (err) => {
+          console.log(err.message);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              const registeredBy = currentUser.data._id;
+              const author = currentUser.data.name;
+              const title = titleRef.current.value;
+              const description = descRef.current.value;
+              const img = downloadURL;
+              const categories = checked;
+              const details = {
+                registeredBy,
+                author,
+                title,
+                description,
+                img,
+                categories,
+              };
+              axios
+                .put(
+                  process.env.REACT_APP_API_URL + `/article/` + path,
+                  details
+                )
+                .then((response) => {
+                  console.log("Response", response.data);
+                  alert("Article updated");
+                  navigate("/dashboard/article");
+                })
+                .catch((error) => {
+                  alert("Error", error.response.message);
+                });
+            })
+            .catch((err) => {
+              console.log("Error", err);
+            });
+        }
+      );
     }
-    const storageRef = ref(
-      storage,
-      `bodimaji/${image.name}` + new Date().getTime()
-    );
-    const uploadTask = uploadBytesResumable(storageRef, image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progressPercentage = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        console.log(progressPercentage);
-      },
-      (err) => {
-        console.log(err.message);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            const registeredBy = currentUser.data._id;
-            const author = currentUser.data.name;
-            const title = titleRef.current.value;
-            const description = descRef.current.value;
-            const img = downloadURL;
-            const categories = checked;
-            const details = {
-              registeredBy,
-              author,
-              title,
-              description,
-              img,
-              categories,
-            };
-            axios
-              .put(process.env.REACT_APP_API_URL + `/article`, details)
-              .then((response) => {
-                console.log("Response", response.data);
-                alert("Article added");
-                navigate("/dashboard/article");
-              })
-              .catch((error) => {
-                alert("Error", error.response.message);
-              });
-          })
-          .catch((err) => {
-            console.log("Error", err);
-          });
-      }
-    );
   };
 
   return (
@@ -677,6 +701,7 @@ export const AdminArticleFormEdit = ({ article, getArticle, path }) => {
                         type="text"
                         placeholder="Title"
                         defaultValue={article.title}
+                        ref={titleRef}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm"
                       />
                     </div>
