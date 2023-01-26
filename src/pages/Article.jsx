@@ -56,7 +56,6 @@ export const ArticleList = () => {
 
 export const Article = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { currentUser } = useSelector((state) => state.user);
 
   const path = useLocation().pathname.split("/")[2];
   const [article, setArticle] = useState({});

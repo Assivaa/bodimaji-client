@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { AdminArticleForm } from "../../components/admin/Form";
+import { Link, useLocation } from "react-router-dom";
+import {
+  AdminArticleForm,
+  AdminArticleFormEdit,
+} from "../../components/admin/Form";
 import { AdminArticleTable } from "../../components/admin/Table";
 import { CircleLoading } from "../../components/Loading";
 import Sidebar from "../../components/Sidebar";
@@ -81,9 +84,31 @@ export const AdminArticleList = () => {
 };
 
 export const AdminArticle = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [article, setArticle] = useState([]);
+  const path = useLocation().pathname.split("/")[3];
+
+  const getArticle = async () => {
+    const { data } = await axios.get(
+      process.env.REACT_APP_API_URL + `/article/${path}`
+    );
+    setArticle(data);
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    getArticle().then((data) => {
+      setIsLoading(false);
+    });
+  }, []);
   return (
     <>
       <Sidebar />
+      <AdminArticleFormEdit
+        article={article}
+        getArticle={getArticle}
+        path={path}
+      />
     </>
   );
 };

@@ -23,28 +23,23 @@ export const LoginForm = () => {
     await axios
       .post(process.env.REACT_APP_API_URL + `/user/login`, credentials)
       .then((response) => {
-        if (response.data.role === "admin") {
-          dispatch(loginSuccess(response));
-          navigate("/");
-        } else if (response.data.role === "customer") {
-          dispatch(loginSuccess(response));
-          const getCart = async () => {
-            const { data } = await axios.get(
-              process.env.REACT_APP_API_URL + `/cart/${response.data._id}`
-            );
-            let arrQty = data.products;
-            if (data) {
-              if (arrQty) {
-                const totalQty = arrQty.reduce((accumulator, object) => {
-                  return accumulator + object.quantity;
-                }, 0);
-                dispatch(getQuantity(totalQty));
-              }
+        dispatch(loginSuccess(response));
+        const getCart = async () => {
+          const { data } = await axios.get(
+            process.env.REACT_APP_API_URL + `/cart/${response.data._id}`
+          );
+          let arrQty = data.products;
+          if (data) {
+            if (arrQty) {
+              const totalQty = arrQty.reduce((accumulator, object) => {
+                return accumulator + object.quantity;
+              }, 0);
+              dispatch(getQuantity(totalQty));
             }
-          };
-          getCart();
-          navigate("/");
-        }
+          }
+        };
+        getCart();
+        navigate("/");
       })
       .catch((error) => {
         alert(error.response.data.message);
