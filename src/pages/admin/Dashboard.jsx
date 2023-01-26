@@ -32,15 +32,15 @@ const Dashboard = () => {
             <br />
           </h1>
         </div>
-        <div class="max-w-full">
-          <div class="sm:flex sm:space-x-4">
+        <div className="max-w-full">
+          <div className="sm:flex sm:space-x-4">
             <AdminDashboardUserCard />
             <AdminDashboardOrderCard />
             <AdminDashboardRevenueCard />
           </div>
         </div>
-        <div class="max-w-full">
-          <div class="sm:flex sm:space-x-4">
+        <div className="max-w-full">
+          <div className="sm:flex sm:space-x-4">
             <AdminDashboardOrderListCard />
             <AdminDashboardProductListCard product={product} />
           </div>

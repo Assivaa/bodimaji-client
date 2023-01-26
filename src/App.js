@@ -17,7 +17,11 @@ import {
   AdminProductList,
   AdminProductNew,
 } from "./pages/admin/Product";
-import { AdminArticle, AdminArticleList } from "./pages/admin/Article";
+import {
+  AdminArticle,
+  AdminArticleList,
+  AdminArticleNew,
+} from "./pages/admin/Article";
 import { AdminUser, AdminUserList } from "./pages/admin/User";
 
 function App() {
@@ -57,6 +61,7 @@ function App() {
             <Route path="article">
               <Route path="" element={<AdminArticleList />} />
               <Route path=":id" element={<AdminArticle />} />
+              <Route path="new" element={<AdminArticleNew />} />
             </Route>
             <Route path="user">
               <Route path="" element={<AdminUserList />} />

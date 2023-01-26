@@ -377,3 +377,176 @@ export const AdminProductFormEdit = ({ product, getProduct, path }) => {
     </div>
   );
 };
+
+export const AdminArticleForm = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const titleRef = useRef(null);
+  const descRef = useRef(null);
+  const [image, setImage] = useState("");
+  const [categories, setCategories] = useState([]);
+  const checkList = ["Tips", "Lifestyle", "Fashion", "Health"];
+
+  let navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleChecked = (e) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!image) {
+      alert("Please upload an image first!");
+    }
+    const storageRef = ref(
+      storage,
+      `bodimaji/${image.name}` + new Date().getTime()
+    );
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progressPercentage = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log(progressPercentage);
+      },
+      (err) => {
+        console.log(err.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
+            const registeredBy = currentUser.data._id;
+            const author = currentUser.data.name;
+            const title = titleRef.current.value;
+            const description = descRef.current.value;
+            const img = downloadURL;
+            const details = {
+              registeredBy,
+              author,
+              title,
+              description,
+              img,
+            };
+            axios
+              .post(process.env.REACT_APP_API_URL + `/article`, details)
+              .then((response) => {
+                console.log("Response", response.data);
+                alert("Article added");
+                navigate("/dashboard/article");
+              })
+              .catch((error) => {
+                alert("Error", error.response.message);
+              });
+          })
+          .catch((err) => {
+            console.log("Error", err);
+          });
+      }
+    );
+  };
+
+  return (
+    <div className="bg-white pl-80 p-8 rounded-md w-full">
+      <div className=" flex items-center justify-between pb-6">
+        <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 mt-10">
+          New Article
+          <br />
+        </h1>
+      </div>
+      <div className="mt-10 sm:mt-0">
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            <form action="#" method="POST">
+              <div className="shadow overflow-hidden sm:rounded-md">
+                <div className="px-4 py-5 bg-white sm:p-6">
+                  <div className="grid grid-cols-6 gap-6">
+                    <div className="col-span-6 sm:col-span-6">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Author
+                      </label>
+                      <input
+                        disabled
+                        type="text"
+                        placeholder="Name"
+                        defaultValue={currentUser.data.name}
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-6">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Title
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Title"
+                        ref={titleRef}
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Description
+                      </label>
+                      <textarea
+                        type="text"
+                        ref={descRef}
+                        placeholder="Description"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-6">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Categories
+                      </label>
+                      <div className="grid grid-cols-6 gap-6">
+                        {checkList.map((item, index) => (
+                          <div
+                            className="flex items-center pl-4 border border-gray-200 rounded"
+                            key={index}
+                          >
+                            <input
+                              onChange={handleChecked}
+                              type="checkbox"
+                              value={item}
+                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                            />
+                            <label className="w-full py-4 ml-2 text-sm font-medium text-gray-900">
+                              {item}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="col-span-3">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Article Image
+                      </label>
+                      <input
+                        className="block w-full text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 focus:outline-none"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="inline-block px-7 py-3 mr-2 bg-black text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

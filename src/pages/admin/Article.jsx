@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AdminArticleForm } from "../../components/admin/Form";
 import { AdminArticleTable } from "../../components/admin/Table";
 import { CircleLoading } from "../../components/Loading";
 import Sidebar from "../../components/Sidebar";
@@ -80,6 +81,15 @@ export const AdminArticle = () => {
   return (
     <>
       <Sidebar />
+    </>
+  );
+};
+
+export const AdminArticleNew = () => {
+  return (
+    <>
+      <Sidebar />
+      <AdminArticleForm />
     </>
   );
 };
